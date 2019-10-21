@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import TodoList from './components/TodoList';
 
 function App() {
   const [todos, setTodos] = useState([])
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
 
+  const findTodo = id => todos.find(todo => todo.id === id)
+
   const handleAddTodo = event => {
     event.preventDefault()
 
-    setTodos(todos.concat({ title, completed: false }))
+    setTodos(todos.concat({ id: Math.random(), title, completed: false }))
     setMessage(`Added todo: ${title}`)
     setTitle('')
   }
 
-  const handleCompleteTodo = index => {
-    setTodos(todos.map((todo, i) => {
-      if (i === index) {
+  const handleCompleteTodo = id => {
+    setTodos(todos.map((todo) => {
+      if (id === todo.id) {
         return {
           ...todo,
           completed: !todo.completed
@@ -25,7 +28,7 @@ function App() {
       return todo
     }))
 
-    setMessage(`"${todos[index].title}" is set to: ${todos[index].completed ? 'incomplete' : 'complete'} `)
+    setMessage(`"${findTodo(id).title}" is set to: ${findTodo(id).completed ? 'incomplete' : 'complete'} `)
   }
 
   useEffect(() => {
@@ -53,22 +56,7 @@ function App() {
           </div>
         )}
 
-        {todos.length === 0 ? <p className="text-gray-700">Nothing to do, Add now...</p> : (
-          <div>
-            {todos.map((todo, i) => (
-              <div key={i} className="border-b py-2 flex items-center">
-                <input
-                  type="checkbox"
-                  className="mr-2"
-                  checked={todo.completed}
-                  onChange={() => handleCompleteTodo(i)} />
-
-                <p className="text-gray-700">
-                  {todo.title}
-                </p>
-              </div>
-            ))}
-          </div>)}
+        <TodoList todos={todos} onToggleComplete={handleCompleteTodo} />
       </div>
     </div >
   );
