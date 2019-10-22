@@ -1,17 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import TodoList from './components/TodoList';
+import React, { useState, useEffect } from 'react'
+import TodoList from './components/TodoList'
+import VisibilityFilter from './components/VisibilityFilter'
 
 function App() {
   const [todos, setTodos] = useState([])
   const [title, setTitle] = useState('')
+  const [filter, setFilter] = useState('all')
   const [message, setMessage] = useState('')
 
   const findTodo = id => todos.find(todo => todo.id === id)
 
+  const handleFilterTodos = event => {
+    event.preventDefault()
+
+    setFilter(event.target.value)
+    setMessage(`Currently displaying: "${event.target.value}" todos`)
+  }
+
   const handleAddTodo = event => {
     event.preventDefault()
 
-    setTodos(todos.concat({ id: Math.random(), title, completed: false }))
+    setTodos(todos.concat({ id: Math.random(), title, completed: false, visible: true }))
     setMessage(`Added todo: ${title}`)
     setTitle('')
   }
@@ -56,7 +65,9 @@ function App() {
           </div>
         )}
 
-        <TodoList todos={todos} onToggleComplete={handleCompleteTodo} />
+        <TodoList todos={todos} onToggleComplete={handleCompleteTodo} filter={filter} className="border-b-2 pb-3 mb-5" />
+
+        <VisibilityFilter onFilter={handleFilterTodos} />
       </div>
     </div >
   );

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function TodoItem({ todo, onToggleComplete }) {
+function TodoItem({ todo, onToggleComplete, className }) {
   return (
-    <div className="border-b py-2 flex items-center">
+    <div className={`py-2 flex items-center ${className}`}>
       <input
         type="checkbox"
         className="mr-2"
@@ -19,7 +19,8 @@ function TodoItem({ todo, onToggleComplete }) {
 
 TodoItem.propTypes = {
   todo: PropTypes.object,
-  onToggleComplete: PropTypes.func
+  onToggleComplete: PropTypes.func,
+  className: PropTypes.string
 }
 
 export default TodoItem
