@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function VisibilityFilter({ onFilter, className }) {
+function VisibilityFilter({ className }) {
     return (
-        <select {...className} onChange={event => onFilter(event)}>
+        <select {...className}>
             <option value="all">All</option>
             <option value="completed">Completed</option>
             <option value="incomplete">Incomplete</option>
@@ -12,7 +12,6 @@ function VisibilityFilter({ onFilter, className }) {
 }
 
 VisibilityFilter.propTypes = {
-    onFilter: PropTypes.func,
     className: PropTypes.string
 }
 
