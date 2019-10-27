@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import TodoItem from '../components/TodoItem'
+import Todo from './Todo'
 
 function TodoList({ className }) {
   const todos = useSelector(state => state.todos)
@@ -13,7 +13,7 @@ function TodoList({ className }) {
   return (
     <div className={className}>
       {todos.map((todo, i) => (
-        <TodoItem key={i} todo={todo} />
+        <Todo key={i} todo={todo} />
       ))}
     </div>
   )

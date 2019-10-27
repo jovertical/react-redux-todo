@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import * as todos from '../actions/todos'
 
-function TodoItem({ todo, className }) {
+function Todo({ todo, className }) {
   const dispatch = useDispatch()
 
   return (
@@ -21,9 +21,13 @@ function TodoItem({ todo, className }) {
   )
 }
 
-TodoItem.propTypes = {
-  todo: PropTypes.object,
+Todo.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }),
   className: PropTypes.string
 }
 
-export default TodoItem
+export default Todo
