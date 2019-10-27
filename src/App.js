@@ -1,6 +1,7 @@
 import React from 'react'
-import TodoList from './components/TodoList'
-import AddTodo from './components/AddTodo'
+import AddTodo from './containers/AddTodo'
+import VisibleTodoList from './containers/VisibleTodoList'
+import Filter from './components/Filter'
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
       <div className="w-1/2 p-5 bg-white shadow-md">
         <AddTodo />
 
-        <TodoList className="border-b-2 pb-3 mb-5" />
+        <VisibleTodoList className="border-b-2 pb-3 mb-5" />
+
+        <Filter />
       </div>
     </div >
   );

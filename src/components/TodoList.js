@@ -1,11 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import Todo from './Todo'
 
-function TodoList({ className }) {
-  const todos = useSelector(state => state.todos)
-
+function TodoList({ className, todos, toggleTodo }) {
   if (todos.length === 0) {
     return <p className={`text-gray-700 ${className}`}>Nothing to do, Add now...</p>
   }
@@ -13,7 +10,7 @@ function TodoList({ className }) {
   return (
     <div className={className}>
       {todos.map((todo, i) => (
-        <Todo key={i} todo={todo} />
+        <Todo key={i} todo={todo} toggleTodo={toggleTodo} />
       ))}
     </div>
   )

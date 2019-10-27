@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function VisibilityFilter({ className }) {
+function Filter({ className }) {
     return (
         <select {...className}>
             <option value="all">All</option>
@@ -11,8 +11,8 @@ function VisibilityFilter({ className }) {
     )
 }
 
-VisibilityFilter.propTypes = {
+Filter.propTypes = {
     className: PropTypes.string
 }
 
-export default VisibilityFilter
+export default Filter

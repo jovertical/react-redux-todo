@@ -1,18 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
-import * as todos from '../actions/todos'
 
-function Todo({ todo, className }) {
-  const dispatch = useDispatch()
-
+function Todo({ todo, toggleTodo, className }) {
   return (
     <div className={`py-2 flex items-center ${className}`}>
       <input
         type="checkbox"
         className="mr-2"
         checked={todo.completed}
-        onChange={() => dispatch(todos.toggleTodo(todo.id))} />
+        onChange={() => toggleTodo(todo.id)} />
 
       <p className={`text-gray-700 ${todo.completed ? 'line-through' : ''}`}>
         {todo.title}
@@ -27,6 +23,7 @@ Todo.propTypes = {
     title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
   }),
+  toggleTodo: PropTypes.func.isRequired,
   className: PropTypes.string
 }
 
