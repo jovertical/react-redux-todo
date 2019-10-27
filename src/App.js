@@ -1,7 +1,7 @@
 import React from 'react'
 import AddTodo from './containers/AddTodo'
 import VisibleTodoList from './containers/VisibleTodoList'
-import Filter from './components/Filter'
+import VisibilityFilter from './containers/VisibilityFilter'
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
 
         <VisibleTodoList className="border-b-2 pb-3 mb-5" />
 
-        <Filter />
+        <VisibilityFilter />
       </div>
     </div >
   );
